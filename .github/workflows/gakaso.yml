@@ -1,0 +1,35 @@
+# Gakaso route B: analyze this repository in CI and send only the structure (never source text)
+# to Gakaso. Authentication is GitHub's OIDC token (audience "gakaso"); no secret is stored here.
+# Design: GAK-590 (docs/architecture/model/GAK-590-github-action.md in the Gakaso repo).
+#
+# ASSUMED (not yet verifiable from outside Gakaso):
+#   - The Action is not published yet. GAK-590 section 6.2 gives `gakaso/action@v1` and calls the
+#     repository name "undecided (provisional)". Replace the `uses:` line with the real
+#     owner/repo@tag once it is published. Until then this job fails at "Set up job".
+#   - The push branch below must equal the tracked branch of the Gakaso project (github_branch).
+name: Gakaso
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+  id-token: write        # required: lets the Action request GitHub's OIDC token
+  pull-requests: write   # lets the Action post/update its single verification comment
+
+jobs:
+  model:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: gakaso/action@v1
+        with:
+          gakaso-url: https://gakaso.com
+          # Repository variable (Settings > Secrets and variables > Actions > Variables).
+          # An empty value is treated as "not set": Gakaso then picks the one project bound to this repo.
+          project: ${{ vars.GAKASO_PROJECT_ID }}
+          comment: "true"
+          language: ja
+          fail-on-violation: "false"
