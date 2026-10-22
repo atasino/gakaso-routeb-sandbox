@@ -3,9 +3,6 @@
 # Design: GAK-590 (docs/architecture/model/GAK-590-github-action.md in the Gakaso repo).
 #
 # ASSUMED (not yet verifiable from outside Gakaso):
-#   - The Action is not published yet. GAK-590 section 6.2 gives `gakaso/action@v1` and calls the
-#     repository name "undecided (provisional)". Replace the `uses:` line with the real
-#     owner/repo@tag once it is published. Until then this job fails at "Set up job".
 #   - The push branch below must equal the tracked branch of the Gakaso project (github_branch).
 name: Gakaso
 
@@ -24,7 +21,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v5
-      - uses: gakaso/action@v1
+      - uses: atasino/gakaso-action@v1
         with:
           gakaso-url: https://gakaso.com
           # Repository variable (Settings > Secrets and variables > Actions > Variables).
