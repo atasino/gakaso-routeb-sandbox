@@ -9,13 +9,13 @@ This is a fictional sandbox operated by Atasino Inc. (株式会社Atasino) to te
 - Next.js 15（App Router）+ React 19 の小さなサイト。Supabase などの外部サービスは使いません（データは `lib/` の定数）。
 - ルート: `/`、`/about`、`/services`、`/services/[slug]`（`bread-subscription` / `cake-order` / `catering` の 3 件を `generateStaticParams` で生成）、`/contact`。共通のナビ（`components/SiteNav.tsx`）とフッター（`components/SiteFooter.tsx`）。
 - 内部リンクはすべて `next/link` の `<Link>`（`basePath` が自動で付くため）。
-- 静的書き出し（`output: 'export'`）。`basePath` は `/gakaso-routeb-sandbox`、公開先は `https://atasino.github.io/gakaso-routeb-sandbox/`。
+- 静的書き出し（`output: 'export'`）。公開先は `https://routeb-sandbox.gakaso.com/`（GitHub Pages のカスタムドメイン）。
 
 ## 手元で動かす
 
 ```
 npm ci
-npm run dev        # http://localhost:3000/gakaso-routeb-sandbox/
+npm run dev        # http://localhost:3000/
 npm run build      # out/ に静的書き出し
 ```
 

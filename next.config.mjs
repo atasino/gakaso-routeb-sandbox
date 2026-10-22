@@ -1,9 +1,8 @@
-// Static export for GitHub Pages (project site: https://atasino.github.io/gakaso-routeb-sandbox/).
+// Static export for GitHub Pages (custom domain: https://routeb-sandbox.gakaso.com/).
 // Keep this file free of host-level URL mapping: Gakaso's analyzer cannot see such rules and
 // would mark the route table as incomplete.
 const config = {
   output: "export",
-  basePath: "/gakaso-routeb-sandbox",
   trailingSlash: true,
   images: { unoptimized: true },
   reactStrictMode: true,
